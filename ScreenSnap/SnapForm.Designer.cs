@@ -34,9 +34,10 @@ namespace ScreenSnap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(952, 624);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(572, 327);
             this.Name = "SnapForm";
-            this.Opacity = 0.3;
+            this.Opacity = 0.5;
             this.Text = "ScreenSnap";
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SnapForm_MouseUp);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.SnapForm_MouseMove);
@@ -48,6 +49,7 @@ namespace ScreenSnap
         }
 
         #endregion
+
 
 
     }

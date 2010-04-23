@@ -19,14 +19,15 @@ namespace ScreenSnap
         Point mouseDownPoint = Point.Empty;
         Point mousePoint = Point.Empty;
         Rectangle prevRect = new Rectangle();
+        Point pl = new Point();
 
         public SnapForm()
         {
             InitializeComponent();
             
-            this.WindowState = FormWindowState.Maximized;
-            
             this.Cursor = Cursors.Cross;
+
+            this.WindowState = FormWindowState.Maximized;
             this.Text = string.Empty;
             this.ControlBox = false;
             this.ShowInTaskbar = false;
@@ -34,18 +35,22 @@ namespace ScreenSnap
 
         private void CaptureScreen(Rectangle r)
         {
-            string DesktopDir = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            if(r.Width == 0 || r.Height == 0) {
+                return;
+            }
 
-            Bitmap bitmap = new Bitmap(Math.Abs(r.Width), Math.Abs(r.Height)); 
+            string DesktopDir = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            Bitmap bitmap = new Bitmap(Math.Abs(r.Width-2), Math.Abs(r.Height-2)); 
             Graphics graphics = Graphics.FromImage(bitmap as Image);
-            graphics.CopyFromScreen(r.Left, r.Top, 0, 0, bitmap.Size);
+            graphics.CopyFromScreen(r.Left + 1, r.Top + 1, 0, 0, bitmap.Size);
             
             TimeSpan FileNumber = (DateTime.Now - DateTime.Today);
-            bitmap.Save(Path.Combine(DesktopDir, String.Format("snap-{0}.png", Math.Round(FileNumber.TotalSeconds))), ImageFormat.Png);
+            bitmap.Save(Path.Combine(DesktopDir, String.Format("img{0}.png", Math.Round(FileNumber.TotalSeconds))), ImageFormat.Png);
         }
 
         private void SnapForm_MouseMove(object sender, MouseEventArgs e)
         {
+            
             if(mouseDown == false) {
                 return;
             }
@@ -66,6 +71,8 @@ namespace ScreenSnap
             ControlPaint.DrawReversibleFrame(rect, Color.Black, FrameStyle.Dashed);
 
             prevRect = rect;
+            
+            
         }
 
         private void SnapForm_MouseUp(object sender, MouseEventArgs e)
@@ -104,6 +111,10 @@ namespace ScreenSnap
         private void SnapForm_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Escape) {
+                if(prevRect.Height != 0 && prevRect.Width != 0) {
+                    ControlPaint.DrawReversibleFrame(prevRect, Color.Black, FrameStyle.Dashed);
+                }
+
                 this.Close();
             }
         }
