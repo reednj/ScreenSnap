@@ -28,6 +28,7 @@ namespace ScreenSnap
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SnapForm));
             this.SuspendLayout();
             // 
             // SnapForm
@@ -36,14 +37,15 @@ namespace ScreenSnap
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(572, 327);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SnapForm";
             this.Opacity = 0.5;
             this.Text = "ScreenSnap";
+            this.Load += new System.EventHandler(this.SnapForm_Load);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SnapForm_MouseUp);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SnapForm_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.SnapForm_MouseMove);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SnapForm_KeyDown);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SnapForm_MouseDown);
-            this.Load += new System.EventHandler(this.SnapForm_Load);
             this.ResumeLayout(false);
 
         }

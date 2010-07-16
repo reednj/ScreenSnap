@@ -19,7 +19,7 @@ namespace ScreenSnap
         Point mouseDownPoint = Point.Empty;
         Point mousePoint = Point.Empty;
         Rectangle prevRect = new Rectangle();
-        Point pl = new Point();
+        //Point pl = new Point();
 
         public SnapForm()
         {
