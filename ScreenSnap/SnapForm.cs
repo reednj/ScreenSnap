@@ -43,9 +43,8 @@ namespace ScreenSnap
             Bitmap bitmap = new Bitmap(Math.Abs(r.Width-2), Math.Abs(r.Height-2)); 
             Graphics graphics = Graphics.FromImage(bitmap as Image);
             graphics.CopyFromScreen(r.Left + 1, r.Top + 1, 0, 0, bitmap.Size);
-            
-            TimeSpan FileNumber = (DateTime.Now - DateTime.Today);
-            bitmap.Save(Path.Combine(DesktopDir, String.Format("img{0}.png", Math.Round(FileNumber.TotalSeconds))), ImageFormat.Png);
+            string filePath = Path.Combine(DesktopDir, String.Format("Sreenshot {0}.png", DateTime.Now.ToString("yyyy-mm-dd hhmmss")));
+            bitmap.Save(filePath, ImageFormat.Png);
         }
 
         private void SnapForm_MouseMove(object sender, MouseEventArgs e)
