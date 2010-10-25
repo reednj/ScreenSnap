@@ -43,7 +43,7 @@ namespace ScreenSnap
             Bitmap bitmap = new Bitmap(Math.Abs(r.Width-2), Math.Abs(r.Height-2)); 
             Graphics graphics = Graphics.FromImage(bitmap as Image);
             graphics.CopyFromScreen(r.Left + 1, r.Top + 1, 0, 0, bitmap.Size);
-            string filePath = Path.Combine(DesktopDir, String.Format("Sreenshot {0}.png", DateTime.Now.ToString("yyyy-mm-dd hhmmss")));
+            string filePath = Path.Combine(DesktopDir, String.Format("Screenshot {0}.png", DateTime.Now.ToString("yyyy-mm-dd hhmmss")));
             bitmap.Save(filePath, ImageFormat.Png);
         }
 
